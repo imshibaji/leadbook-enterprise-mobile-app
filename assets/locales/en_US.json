@@ -1,0 +1,36 @@
+{
+    "page":{
+        "dashboard": "Dashboard",
+        "registration": "Registration",
+        "forgot": "Forgot Password"
+    },
+    "field":{
+        "fullname": "Full name",
+        "username": "Username",
+        "password": "Password",
+        "email": "Email"
+    },
+    "hint":{
+        "fullname": "Input Full Name",
+        "username": "Input Username",
+        "password": "Input Password",
+        "email": "Input Email"
+    },
+    "error":{
+        "login":{
+            "title": "Login Error",
+            "message": "Username and password do not match."
+        }
+    },
+    "button": {
+        "login": "Login",
+        "register": "Register",
+        "forgot": "forgot password ? Get new password",
+        "logout": "Logout",
+        "sign_in_fb": "Sign-in with Facebook",
+        "sign_in_google": "Sign-in with Google",
+        "sign_in_apple": "Sign-in with Apple",
+        "register_n_login": "Register and Login",
+        "send_email": "Send Email"
+    }
+}
