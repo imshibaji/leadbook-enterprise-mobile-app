@@ -48,21 +48,21 @@ class Auth extends GetxService {
     }
   }
 
-  set(String value) async {
+  void set(String value) async {
     await _box.write(authKey, value);
   }
 
-  check() {
+  bool check() {
     return _box.hasData(authKey);
   }
 
   String get key => get();
 
-  get() {
-    return _box.read(authKey);
+  String get() {
+    return _box.read(authKey) ?? '';
   }
 
-  logout() {
+  void logout() {
     _box.remove(authKey);
   }
 }
