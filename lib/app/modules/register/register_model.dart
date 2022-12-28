@@ -1,63 +1,41 @@
-import 'dart:convert';
-
-class RegisterModel {
-  String? fullname;
+class Register {
+  int? id;
+  String? uid;
+  String? name;
   String? email;
   String? password;
+  String? role;
+  bool? isActive;
 
-  RegisterModel({
-    this.fullname,
+  Register({
+    this.id,
+    this.uid,
+    this.name,
     this.email,
     this.password,
+    this.role,
+    this.isActive,
   });
 
-  RegisterModel copyWith({
-    String? fullname,
-    String? email,
-    String? password,
-  }) {
-    return RegisterModel(
-      fullname: fullname ?? this.fullname,
-      email: email ?? this.email,
-      password: password ?? this.password,
-    );
+  Register.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    uid = json['uid'];
+    name = json['name'];
+    email = json['email'];
+    password = json['password'];
+    role = json['role'];
+    isActive = json['isActive'];
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'fullname': fullname,
-      'email': email,
-      'password': password,
-    };
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['uid'] = uid;
+    data['name'] = name;
+    data['email'] = email;
+    data['password'] = password;
+    data['role'] = role;
+    data['isActive'] = isActive;
+    return data;
   }
-
-  factory RegisterModel.fromMap(Map<String, dynamic> map) {
-    return RegisterModel(
-      fullname: map['fullname'],
-      email: map['email'],
-      password: map['password'],
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory RegisterModel.fromJson(String source) =>
-      RegisterModel.fromMap(json.decode(source));
-
-  @override
-  String toString() =>
-      'RegisterModel(fullname: $fullname, email: $email, password: $password)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is RegisterModel &&
-        other.fullname == fullname &&
-        other.email == email &&
-        other.password == password;
-  }
-
-  @override
-  int get hashCode => fullname.hashCode ^ email.hashCode ^ password.hashCode;
 }

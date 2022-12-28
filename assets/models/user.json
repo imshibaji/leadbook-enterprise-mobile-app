@@ -1,0 +1,33 @@
+{
+    "id": 1,
+    "uid": null,
+    "name": "Shibaji Debnath",
+    "email": "imshibaji@gmail.com",
+    "mobile": null,
+    "password": "$2b$10$VdyuBwmShPu1a82VhXBOGu1VYLvk0bbAn0LefP6okYgTk6b0knAuK",
+    "role": "admin",
+    "isActive": true,
+    "createdAt": "2022-07-01T18:48:09.801Z",
+    "updatedAt": "2022-07-02T08:56:48.000Z",
+    "deletedAt": null,
+    "businesses": [
+        {
+            "id": 2,
+            "uid": null,
+            "name": "SDN Tech",
+            "address": "Dum Dum",
+            "city": "Kolkata",
+            "state": "West Bengal",
+            "country": "India",
+            "pincode": 700028,
+            "mobile": "8981009499",
+            "altMobile": null,
+            "email": "info@shibajidebnath.com",
+            "website": "www.shibajidebnath.com",
+            "isActive": false,
+            "createdAt": "2022-07-01T19:05:37.053Z",
+            "updatedAt": "2022-07-01T19:05:37.053Z",
+            "deletedAt": null
+        }
+    ]
+}

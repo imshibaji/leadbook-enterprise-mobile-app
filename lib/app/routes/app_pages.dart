@@ -10,6 +10,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/users/bindings/users_binding.dart';
+import '../modules/users/views/users_view.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -45,6 +47,11 @@ class AppPages {
       name: _Paths.FORGET,
       page: () => ForgetView(),
       binding: ForgetBinding(),
+    ),
+    GetPage(
+      name: _Paths.USERS,
+      page: () => UsersView(),
+      binding: UsersBinding(),
     ),
   ];
 }

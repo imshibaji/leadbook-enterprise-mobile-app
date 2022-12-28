@@ -1,26 +1,18 @@
-// ignore_for_file: unnecessary_overrides
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:leadbook_online/app/modules/register/providers/register_provider.dart';
 
 import '../../../data/auth.dart';
 import '../register_model.dart';
+// import '../register_model_back.dart';
 
 class RegisterController extends GetxController {
   RxBool isShow = true.obs;
-  Rx<RegisterModel> registerModel = RegisterModel().obs;
+  Rx<Register> registerModel = Register().obs;
   Auth auth = Get.find<Auth>();
+  late RegisterProvider registerProvider = RegisterProvider();
 
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   @override
   void onClose() {}
@@ -33,7 +25,7 @@ class RegisterController extends GetxController {
 
   void setName(String name) {
     registerModel.update((val) {
-      val!.fullname = name;
+      val!.name = name;
     });
   }
 
@@ -49,9 +41,23 @@ class RegisterController extends GetxController {
     });
   }
 
-  void registerAndGotoHome() {
+  void setIsActive([bool isActive = true]) {
+    registerModel.update((val) {
+      val!.isActive = isActive;
+    });
+  }
+
+  void setRole([String role = 'user']) {
+    registerModel.update((val) {
+      val!.role = role;
+    });
+  }
+
+  void registerAndGotoHome() async {
+    await registerProvider.postRegister(registerModel.value);
     // setAuth(loginModel.toString());
-    auth.authCheck(registerModel.value.email!, registerModel.value.password!);
+    await auth.authCheck(
+        registerModel.value.email!, registerModel.value.password!);
     if (auth.check()) {
       Get.offAndToNamed('/home');
     } else {

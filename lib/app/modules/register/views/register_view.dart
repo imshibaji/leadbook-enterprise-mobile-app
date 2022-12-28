@@ -35,6 +35,7 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 validator: (value) {
                   if (value!.isNotEmpty) {
+                    controller.setName(value);
                     return null;
                   }
                   return 'Please Input Fullname';
@@ -52,6 +53,7 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 validator: (value) {
                   if (value!.isNotEmpty) {
+                    controller.setEmail(value);
                     return null;
                   }
                   return 'Please Input email';
@@ -96,6 +98,8 @@ class RegisterView extends GetView<RegisterController> {
                     child: GFButton(
                       child: Text('button_register_n_login'.tr),
                       onPressed: () {
+                        controller.setRole();
+                        controller.setIsActive();
                         if (_formKey.currentState!.validate()) {
                           controller.registerAndGotoHome();
                         }

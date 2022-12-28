@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/leads_controller.dart';
+import '../lead_model.dart';
+import 'partials/lead_list.dart';
+import 'partials/single_lead.dart';
 
 class LeadsView extends GetView<LeadsController> {
+  final PageController _controller = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,23 +16,52 @@ class LeadsView extends GetView<LeadsController> {
         title: Text('LeadsView'),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: PageView(
+        controller: _controller,
+        children: [
+          listView(),
+          singleView(),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.increment();
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+
+  Obx listView() {
+    return Obx(() => controller.leads.isEmpty
+        ? Center(
+            child: Text('Loading...'),
+          )
+        : LeadList(
+            controller: controller,
+            pageController: _controller,
+          ));
+  }
+
+  Obx singleView() {
+    return Obx(() {
+      Lead lead = controller.lead.value;
+      return SingleLead(controller: _controller, lead: lead);
+    });
+  }
+
+  Obx othersView() {
+    return Obx(
+      () => Column(
         children: [
           Text(
             'LeadsView is working',
             style: TextStyle(fontSize: 20),
           ),
-          Obx(
-            (() => Text(
-                'Lead Purpose: ${controller.leads.value.purpose ?? 'No Data'}')),
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Obx(
-                () => Text('Value: ${controller.count}'),
-              ),
+              Text('Value: ${controller.count}'),
               SizedBox(
                 width: 10,
               ),
@@ -39,12 +73,6 @@ class LeadsView extends GetView<LeadsController> {
             ],
           )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.increment();
-        },
-        child: Icon(Icons.add),
       ),
     );
   }

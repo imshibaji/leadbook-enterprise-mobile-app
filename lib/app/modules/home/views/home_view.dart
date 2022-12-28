@@ -77,6 +77,12 @@ class HomeView extends GetView<HomeController> {
             children: [
               ElevatedButton(
                 onPressed: () {
+                  Get.toNamed('/users');
+                },
+                child: Text('Goto Users.'),
+              ),
+              ElevatedButton(
+                onPressed: () {
                   Get.updateLocale(Locale('en', 'EN'));
                 },
                 child: Text('English'),

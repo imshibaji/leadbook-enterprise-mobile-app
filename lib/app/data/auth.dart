@@ -1,9 +1,10 @@
 import 'dart:developer';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:leadbook_online/app/modules/login/login_model.dart';
 
+import '../modules/login/login_model.dart';
 import '../modules/login/providers/login_provider.dart';
 
 class Auth extends GetxService {
